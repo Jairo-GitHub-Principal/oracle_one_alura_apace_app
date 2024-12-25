@@ -6,15 +6,17 @@ import CampoTexto from "../CampoTexto"
 const HeaderStyles = styled.header`
 
     padding: 60px 0;
+    box-sizing: border-box;
     display: flex;
-    flex-direction: column;
-    
   `
 
 const LogoAndImput = styled.div`
              display: flex;
+             width: 100%;
+             box-sizing: border-box;
              justify-content: space-between;
              align-items: center;
+             flex-wrap: wrap;
 
 `
 
