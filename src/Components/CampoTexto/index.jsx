@@ -8,33 +8,35 @@ const ContainerSearchEstilizado = styled.div`
 `
 
 const InputStyle = styled.input`
-    width: 400px;
-    height: 40px;
-    border-radius: 5px;
-    border: none;
-    padding: 5px 10px;
-    text-align: left;
-    color: #f6f6f6;
-    background-color: #000000;
-    margin-right: 24px;
-    font-size: 30px;
+    height: 56px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    
+    border: 2px solid;
+    border-color: #C98CF1;
+    background: transparent;
+    box-sizing: border-box;
+    width: 566px;
+    color: #D9D9D9;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
     
     `
 
 const IconeLupa= styled.img`
-top: 10px;
-right: 10px;
-width: 38px;
-height: 38px;
-position: absolute;
-right: 50px;
+ position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 38px;
+    height: 38px;
 `
 
 const CampoTexto = (props) => {
 
     return (
         <ContainerSearchEstilizado>           
-            <InputStyle  type="text" placeholder="Digite sua busca" />
+            <InputStyle  type="text" placeholder="Digite sua busca" {...props} />
             <IconeLupa src={search} alt="lupa" />
         </ContainerSearchEstilizado>
     )

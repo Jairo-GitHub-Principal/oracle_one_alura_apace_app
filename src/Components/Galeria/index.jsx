@@ -6,23 +6,23 @@ import Imagem from "./Imagem"
 
 const GaleriaContainer = styled.div`
     display: flex;
-    border: 1px solid #f6f6f6;
-    width: 100%;
-    max-width: 1146px;
+    gap: 24px;
+    padding:0;
+    margin: 0;
+    /* border: 1px solid #f6f6f6; */
+    
     `
 const SectionFluid = styled.section`
-    display: flex;
-    flex-direction: column;
     flex-grow: 1;
 
     `
 
-    const CardStyled = styled.div`
+    const ImagensContainer = styled.div`
         display: flex;
         flex-wrap: wrap;
         gap: 24px;
         `
-const Galeria = ({ fotos = [], aoFotoSelecionada }) => {
+const Galeria = ({ fotos = [], aoFotoSelecionada, aoAlternarFavorito }) => {
     return (
         <>
 
@@ -30,19 +30,18 @@ const Galeria = ({ fotos = [], aoFotoSelecionada }) => {
             <GaleriaContainer>
                 <SectionFluid>
                     <Titulo $alinhamento="left">Navegue pela galeria</Titulo>
-                    <CardStyled>
+                    <ImagensContainer>
                         {fotos.map(
-                            foto => 
-                                <Imagem
+                            foto => <Imagem
                                     key={foto.id}
-                                    foto={foto.path} 
-                                    titulo={foto.titulo}
-                                    fonte={foto.fonte}
+                                    foto={foto} 
+                                    
                                     aoZoomSolicitado={aoFotoSelecionada}
+                                    aoAlternarFavorito={aoAlternarFavorito}
                                     
                                     />
                             )}
-                        </CardStyled>
+                        </ImagensContainer>
                     
                 </SectionFluid>
                 <Populares />

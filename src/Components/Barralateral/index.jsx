@@ -3,10 +3,10 @@ import ItemNavegation from "./ItemNavegation"
 
 
 const ListaStyle = styled.ul`
-    
-    width: 100%;
     list-style: none;
-    padding: 5px;
+    padding: 0;
+    margin: 0;
+    width: 236px;
 `
 
 

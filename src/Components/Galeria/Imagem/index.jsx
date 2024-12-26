@@ -2,54 +2,55 @@
 import styled from "styled-components"
 import { FaExpandAlt } from "react-icons/fa";
 import { MdOutlineFavorite } from "react-icons/md";
+import { LuHeart } from "react-icons/lu";
+
 
 
 
 const FigureStyled = styled.figure`
-    
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
-    width: 100%;
-    max-width:400px;
-    background: rgba(6, 28, 56, 0.3);
+    width: ${props => props.$expandida  ? '90%' : '460px'};
+    max-width: 100%;
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
     border-radius: 20px;
-    border: 1px solid #f6f6f6;
-    box-shadow: 0px 0px 10px rgba(6, 28, 56, 0.8);
+    box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.45);
+   
+    
+     
  
     
 `
 
 const ImgStyled = styled.img`
     width: 100%;
-    max-height: 226px;
     border-radius: 20px 20px 0 0;
+    
     margin-bottom:0;
     padding: 0;
 
 `
 const FigureCaptionStyled = styled.figcaption`
-    display: flex;
-    flex-direction: column;
-    justify-content:center;       
+   background-color: #001634;
+        border-radius: 0px 0px 20px 20px;
+        color: white;
+        box-sizing: border-box;
+        padding: 12px;      
 
 `
 const TituloStyled = styled.h3`
     color: #f6f6f6;
     font-family: 'GandhiSansBold';
-    font-size: 24px;
-    padding: 0;
-    margin-left: 16px;
-    margin-bottom: 5px;
-`
-const PStyled = styled.p`
+    padding: 4px 0;
     margin: 0;
-    font-size: 16px;
-    font-family: 'AlegreyaSans';
-    color: #f6f6f6;
+   
+`
+const FonteStyled = styled.h4`
+     font-family: 'GandhiSansBold';
+     flex-grow: 1;
+     margin: 0;
+     font-size: 16px;
     
     
 `
@@ -59,8 +60,6 @@ const FooterStyled = styled.footer`
     justify-content: space-between;
     align-items: center;
     padding: 0;
-    margin-left: 16px;
-    margin-right: 16px;
     margin-bottom: 10px;
 
 `
@@ -73,36 +72,60 @@ const ContainerButton = styled.div`
 `
 
 const ButonStyled = styled.button`
-    background-color: transparent;	
-    border: none;
     color: #f6f6f6;
+    margin-left: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+`
+const IconsFavorito = styled.img`
+
 `
 
 
-const Imagem = ({ foto, titulo, fonte, aoZoomSolicitado }) => {
+const Imagem = ({ foto, aoZoomSolicitado, expandida = false, aoAlternarFavorito }) => {
+    // console.log("ao clicar",expandida)
+
+    const FavoritoIcon = foto.favorita ? "./icones/favorito-ativo.png" : "./icones/favorito.png"
+
     return (
-        <FigureStyled>
+        <FigureStyled $expandida={expandida} id={`foto-${foto.id}`} >
             <ImgStyled
-                alt={titulo}
-                src={foto}
+                alt={foto.titulo}
+                src={foto.path}
             />
 
 
 
             <FigureCaptionStyled>
-                <TituloStyled>{titulo}</TituloStyled>
+                <TituloStyled>{foto.titulo}</TituloStyled>
                 <FooterStyled>
-                    <PStyled>
-                        {fonte}
-                    </PStyled>
+                    <FonteStyled>
+                        {foto.fonte}
+                    </FonteStyled>
                     <ContainerButton>
-                        <ButonStyled ><MdOutlineFavorite cursor={"pointer"} /></ButonStyled>
-                        <ButonStyled >
-                            <FaExpandAlt
-                                cursor={"pointer"}
-                                onClick={() => aoZoomSolicitado(foto)}  
-                            />
+                        
+                        <ButonStyled   onClick={() => aoAlternarFavorito(foto)}>
+                            <IconsFavorito src={FavoritoIcon}/>                  
                         </ButonStyled>
+
+
+                        {!expandida &&
+                            <ButonStyled  >
+                                <FaExpandAlt
+                                    size={24}
+                                    cursor={"pointer"}
+                                    aria-hidden={expandida}  
+                                    onClick={() => aoZoomSolicitado(foto)}
+                                   
+                                />
+                            </ButonStyled>
+                        }
+
+
                     </ContainerButton>
 
                 </FooterStyled>

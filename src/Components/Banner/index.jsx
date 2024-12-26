@@ -1,30 +1,20 @@
 import styled from "styled-components"
 
 const StyledBanner = styled.div`
-display: flex;
-justify-content: start;
-align-items: center;
-flex-grow: 1;
-height: 300px;
-border-radius:20px ;
-margin: 0;
-background-image: ${props => `url(${props.$bakcgroundImage})`};
-background-repeat: no-repeat;
-background-position: center;
-font-family: 'GandhiSansBold';
-color: #f6f6f6;
+background-image: ${props => `url(${props.$backgroundImage})`};
+    flex-grow: 1;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    min-height: 328px;
+    margin: 0;
+    border-radius: 20px;
+    max-width: 100%;
+    background-size: cover;
 `
 
 const TituloEstilizadoStyle = styled.h1`
-width: 100%;
-    font-family: 'GandhiSansBold';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 39px;
-    text-align: start;
-    color: #f6f6f6;
-    font-weight: 400;
+font-weight: 400;
     font-size: 40px;
     line-height: 48px;
     color: #FFFFFF;
@@ -33,7 +23,7 @@ width: 100%;
 `
 const Banner = (props) => {
     return (
-        <StyledBanner $bakcgroundImage={props.bakcgroundImage} >
+        <StyledBanner $backgroundImage={props.backgroundImage} >
             <TituloEstilizadoStyle>{props.texto}</TituloEstilizadoStyle>
         </StyledBanner>
     )
