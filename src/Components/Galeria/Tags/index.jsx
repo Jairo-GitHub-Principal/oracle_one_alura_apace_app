@@ -25,15 +25,23 @@ gap: 24px;
 `
 const TagButton = styled.button`
 display: flex;
+cursor: pointer;
 border: none;
-
 background:rgba(251, 251, 251, 0.2);
 border-radius: 10px;
 color: aliceblue;
 padding: 10px;
 font-family: 'AlegreyaSans';
 font-size: 24px;
+
+&:active{
+  transform: scale(0.95); /* Efeito de "pressionado" */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ao pressionar */
+
+}
 `
+
+
 
 
 // Definindo a fonte globalmente
@@ -47,15 +55,20 @@ font-size: 24px;
 `
 
 
-const  Tags = () => {
-    return (
-        <TagContainer>
+const Tags = ({aoTagClicada}) => {
+  return (
+    <TagContainer>
 
-            <TagTextInfo>Busque por tags:</TagTextInfo>
-          
-                {tags.map(tag => <TagButton key={tag.id}>{tag.title}</TagButton>)}
-        </TagContainer>
-    )
+      <TagTextInfo>Busque por tags:</TagTextInfo>
+
+      {tags.map(tag => <TagButton
+        key={tag.id}
+        onClick={() => aoTagClicada(tag.id)}
+      >
+        {tag.title}</TagButton>)}
+
+    </TagContainer>
+  )
 }
 
 export default Tags

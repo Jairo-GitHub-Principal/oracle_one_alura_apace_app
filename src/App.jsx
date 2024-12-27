@@ -4,8 +4,11 @@ import Header from './Components/Header'
 import BarraLateral from './Components/Barralateral'
 import Banner from './Components/Banner'
 import Galeria from './Components/Galeria'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import fotos from './fotos.json'
+import fotosPopulares from './Components/Galeria/Populares/fotos-populares.json'
+import fotoVejaMais from "./Components/Galeria/Populares/foto-vejamais.json"
+
 import ModalZoom from './Components/ModalZoom'
 import Footer from './Components/Footer'
 
@@ -43,13 +46,45 @@ const ConteudoGaleria = styled.section`
 `
 function App() {
 
-  const [fotosDaGaleria, setFotosDaGaleria] = useState(fotos)
-  const [fotoSelecionada, setFotoSelecionada] = useState(null)
+  const [fotosDaGaleria, setFotosDaGaleria] = useState(fotos) // listar as fotos na galeria
+  const [fotosPopularesGaleria, setFotosPopularesGaleria] = useState(fotosPopulares) // listar as fotos na galeria de populares
+  const [fotosVejaMaisGaleria, setFotosVejaMaisGaleria] = useState(fotoVejaMais) // listar as fotos na galeria de populares
+  const [fotoSelecionada, setFotoSelecionada] = useState(null) // selecionar uma foto na galeria para exibir no modal zoom
+
 
   function SetFotoSelecionada(foto) {
+    console.log("App SetFotoSelecionada", foto)
     setFotoSelecionada(foto)
-    // console.log("App AoFotoSelecionada", foto)
   }
+
+  
+
+  const AoTagClicada = (tag) => { /** aqui selecionaremos as fotos de acordo com a tag clicada */
+    console.log("App aoTagClicada", tag)
+    
+    if(tag === 0){
+              setFotosDaGaleria(fotos)
+    }else {
+      
+      const fotosFiltradas = fotos.filter(foto => foto.tagId === tag)
+      
+      setFotosDaGaleria(fotosFiltradas)
+      console.log("fotosFiltradas",fotosFiltradas)
+
+    }
+  
+     
+  }
+
+  const FotoSearch = (pesquisa) => {
+    console.log("App aoTagClicada", pesquisa)
+    
+    const fotosFiltradas = fotos.filter(foto => foto.titulo.toLowerCase().includes(pesquisa.toLowerCase()))
+    setFotosDaGaleria(fotosFiltradas)
+    console.log("fotosFiltradas",fotosFiltradas)
+
+  }
+  
 
   const aoAlternarFavorito = (foto) => {
     if(foto.id===fotoSelecionada?.id){
@@ -73,17 +108,22 @@ function App() {
 
       <ExtilosGlobais />
       <AppContainer>
-        <Header />
+        <Header FotoSearch={FotoSearch}/>
         <MainContainer>
           <BarraLateral />
 
           <ConteudoGaleria>
             <Banner backgroundImage="../../public/imagens/banner.png"
-              texto="A galeria mais completa de fotos do espaço!" />
+              texto="A galeria mais completa de fotos do espaço!" 
+              FotoSearch={FotoSearch}
+              />
             <Galeria
-              fotos={fotosDaGaleria}
-              aoFotoSelecionada={SetFotoSelecionada}
-              aoAlternarFavorito={aoAlternarFavorito}
+              fotosPopulares={fotosPopularesGaleria}/** fotos populares */
+              fotoVejaMais={fotosVejaMaisGaleria}
+              aoFotoSelecionada={SetFotoSelecionada} /** usado para selecionar foto tanto em galeria quanto em populares */
+              fotos={fotosDaGaleria} /** fotos da galeria */
+              aoAlternarFavorito={aoAlternarFavorito} /** função usado para alternar favorito */
+              aoTagClicada={AoTagClicada}
             />
           </ConteudoGaleria>
 

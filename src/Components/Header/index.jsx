@@ -15,26 +15,18 @@ const HeaderStyles = styled.header`
     }
   `
 
-// const LogoAndImput = styled.div`
-//              display: flex;
-//              width: 100%;
-//              box-sizing: border-box;
-//              justify-content: space-between;
-//              align-items: center;
-//              flex-wrap: wrap;
-
-// `
 
 
 
 
-const Headers = () => {
+
+const Headers = ( {FotoSearch}) => {
     return (
         <HeaderStyles>
             {/* <LogoAndImput> */}
             <img src="../../../public/imagens/logo.png" alt="logo" /> {/* pra importar da pasta public*/}
             {/* <img src={img} alt="logo" /> * pra importar da pasta assets dentro do src */}
-            <CampoTexto />
+            <CampoTexto  FotoSearch={FotoSearch} />
 
             {/* </LogoAndImput> */}
                      

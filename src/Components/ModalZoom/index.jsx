@@ -30,12 +30,15 @@ const DialogStyled = styled.dialog`
             top: 20px;
             right: 60px;
             cursor: pointer;
+            &:active{
+  transform: scale(1.25); /* Efeito de "pressionado" */
+}
            
         }
     }
     `
 const  ModalZoom = ({ foto,aoAlternarFavorito,aoFechar }) => {
-    // console.log("ModalZoom", foto)
+     console.log("ModalZoom", foto)
     return (
         <>
             {foto && <>

@@ -17,34 +17,39 @@ const SectionFluid = styled.section`
 
     `
 
-    const ImagensContainer = styled.div`
+const ImagensContainer = styled.div`
         display: flex;
         flex-wrap: wrap;
         gap: 24px;
         `
-const Galeria = ({ fotos = [], aoFotoSelecionada, aoAlternarFavorito }) => {
+const Galeria = ({ fotos = [], aoFotoSelecionada, aoAlternarFavorito, aoTagClicada,fotosPopulares,fotoVejaMais }) => {
+    // console.log("Galeria", fotos)
     return (
         <>
 
-            <Tags />
+            <Tags  aoTagClicada={aoTagClicada} />
             <GaleriaContainer>
                 <SectionFluid>
                     <Titulo $alinhamento="left">Navegue pela galeria</Titulo>
                     <ImagensContainer>
                         {fotos.map(
                             foto => <Imagem
-                                    key={foto.id}
-                                    foto={foto} 
-                                    
-                                    aoZoomSolicitado={aoFotoSelecionada}
-                                    aoAlternarFavorito={aoAlternarFavorito}
-                                    
-                                    />
-                            )}
-                        </ImagensContainer>
-                    
+                                key={foto.id}
+                                foto={foto}
+
+                                aoZoomSolicitado={aoFotoSelecionada}
+                                aoAlternarFavorito={aoAlternarFavorito}
+
+                            />
+                        )}
+                    </ImagensContainer>
+
                 </SectionFluid>
-                <Populares />
+                <Populares
+                    aoZoomSolicitado={aoFotoSelecionada}
+                    fotosPopulares={fotosPopulares}
+                    fotoVejaMais={fotoVejaMais}
+                />
             </GaleriaContainer>
         </>
     )

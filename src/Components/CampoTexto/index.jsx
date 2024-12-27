@@ -30,14 +30,23 @@ const IconeLupa= styled.img`
     right: 10px;
     width: 38px;
     height: 38px;
+    cursor: pointer;
+    &:active{
+  transform: scale(1.15); /* Efeito de "pressionado" */
+    }
 `
 
-const CampoTexto = (props) => {
+const CampoTexto = ({FotoSearch, ...props}) => {
 
     return (
         <ContainerSearchEstilizado>           
-            <InputStyle  type="text" placeholder="Digite sua busca" {...props} />
-            <IconeLupa src={search} alt="lupa" />
+            <InputStyle  
+                type="text" 
+                placeholder="Digite sua busca" 
+                onClick={(eventes)=> FotoSearch(eventes.target.value)}
+                onKeyDown={(eventes)=> FotoSearch(eventes.target.value)}
+                {...props}/> 
+            <IconeLupa src={search} alt="lupa"   />
         </ContainerSearchEstilizado>
     )
 }

@@ -80,9 +80,12 @@ const ButonStyled = styled.button`
     background-color: transparent;
     border: none;
     cursor: pointer;
+    &:active{
+  transform: scale(1.15); /* Efeito de "pressionado" */
+}
 `
 const IconsFavorito = styled.img`
-
+    /** usado para adicionar a imagem do favorito dentro do componente imagen */
 `
 
 
